@@ -49,8 +49,9 @@ public class AdventOfCode {
     private static void menuDisplay() {
         System.out.println("Advent Of Code 2017");
         System.out.println("###################");
-        System.out.println("Day 1:");
-        System.out.println("(1) Inverse Captcha");
+        System.out.println("Day 1: Inverse Captcha");
+        System.out.println("(1) Match Next Index");
+        System.out.println("(2) Match Index At Half Length");
         System.out.println("--------------------");
         System.out.println("(x) Quit");
         System.out.println("####################");
@@ -65,16 +66,23 @@ public class AdventOfCode {
      * @param choice Input from user
      */
     private static void processChoice(String choice) {
-        if (choice.equals("1")) {
-            new InverseCaptcha();
-            pause();
-        }
-        else if (choice.equals("x")) {
-            System.out.println("Be Well!");
-            exit = true;
-        } else {
-            System.out.println("Unrecognized input.  Please try again!");
-            pause();
+        switch (choice) {
+            case "1":
+                new InverseCaptcha().byNextIndex();
+                pause();
+                break;
+            case "2":
+                new InverseCaptcha().byHalfLength();
+                pause();
+                break;
+            case "x":
+                System.out.println("Be Well!");
+                exit = true;
+                break;
+            default:
+                System.out.println("Unrecognized input.  Please try again!");
+                pause();
+                break;
         }
     }
 
