@@ -7,6 +7,7 @@ Description:    Advent Of Code 2017 - Day 1: Inverse Captcha
 
 package com.roush.AdventOfCode;
 
+import com.roush.Checksum.Checksum;
 import com.roush.InverseCaptcha.InverseCaptcha;
 
 import java.util.Scanner;
@@ -52,6 +53,8 @@ public class AdventOfCode {
         System.out.println("Day 1: Inverse Captcha");
         System.out.println("(1) Match Next Index");
         System.out.println("(2) Match Index At Half Length");
+        System.out.println("Day 2: Checksum");
+        System.out.println("(3) Checksum");
         System.out.println("--------------------");
         System.out.println("(x) Quit");
         System.out.println("####################");
@@ -73,6 +76,10 @@ public class AdventOfCode {
                 break;
             case "2":
                 new InverseCaptcha().byHalfLength();
+                pause();
+                break;
+            case "3":
+                new Checksum();
                 pause();
                 break;
             case "x":
