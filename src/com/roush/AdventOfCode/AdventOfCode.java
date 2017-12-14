@@ -54,7 +54,8 @@ public class AdventOfCode {
         System.out.println("(1) Match Next Index");
         System.out.println("(2) Match Index At Half Length");
         System.out.println("Day 2: Checksum");
-        System.out.println("(3) Checksum");
+        System.out.println("(3) Checksum By Min/Max Addition");
+        System.out.println("(4) Checksum By Division");
         System.out.println("--------------------");
         System.out.println("(x) Quit");
         System.out.println("####################");
@@ -79,7 +80,11 @@ public class AdventOfCode {
                 pause();
                 break;
             case "3":
-                new Checksum();
+                new Checksum().minMaxChecksum();
+                pause();
+                break;
+            case "4":
+                new Checksum().divisibleChecksum();
                 pause();
                 break;
             case "x":
