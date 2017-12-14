@@ -102,8 +102,6 @@ public class Checksum {
             // Then move to the next row
             outerloop:
             for (int i = 0; i < line.length; i++) {
-                int currentNum = line[i];
-
                 for (int j = 0; j < line.length; j++) {
                     if (debug) {
                         System.out.println(" I: " + line[i] + " J: " + line[j]);
