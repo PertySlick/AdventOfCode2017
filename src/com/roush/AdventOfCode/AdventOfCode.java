@@ -9,6 +9,7 @@ package com.roush.AdventOfCode;
 
 import com.roush.Checksum.Checksum;
 import com.roush.InverseCaptcha.InverseCaptcha;
+import com.roush.SpiralMemory.SpiralMemory;
 
 import java.util.Scanner;
 
@@ -51,11 +52,13 @@ public class AdventOfCode {
         System.out.println("Advent Of Code 2017");
         System.out.println("###################");
         System.out.println("Day 1: Inverse Captcha");
-        System.out.println("(1) Match Next Index");
-        System.out.println("(2) Match Index At Half Length");
+        System.out.println("\t(1) Match Next Index");
+        System.out.println("\t(2) Match Index At Half Length");
         System.out.println("Day 2: Checksum");
-        System.out.println("(3) Checksum By Min/Max Addition");
-        System.out.println("(4) Checksum By Division");
+        System.out.println("\t(3) Checksum By Min/Max Addition");
+        System.out.println("\t(4) Checksum By Division");
+        System.out.println("Day 3: Spiral Memory");
+        System.out.println("\t(5) Manhattan Distance");
         System.out.println("--------------------");
         System.out.println("(x) Quit");
         System.out.println("####################");
@@ -85,6 +88,10 @@ public class AdventOfCode {
                 break;
             case "4":
                 new Checksum().divisibleChecksum();
+                pause();
+                break;
+            case "5":
+                new SpiralMemory().sequentialData();
                 pause();
                 break;
             case "x":
