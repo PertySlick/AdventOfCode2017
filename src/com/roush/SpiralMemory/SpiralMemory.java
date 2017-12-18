@@ -20,13 +20,14 @@ public class SpiralMemory {
     private int width;                                      // Width of matrix array (rows and columns)
     private int initialX, initialY;                         // Starting point for plotting data
     private int currentX, currentY;                         // Current X/Y coordinates
+    private int currentTotal;                               // Current total for sum of neighbors
 
 
 // CONSTRUCTOR(S)
 
 
     /**
-     * Instanciates a SpiralMemory object by initializing the matrix for
+     * Instantiates a SpiralMemory object by initializing the matrix for
      * plotting data.
      */
     public SpiralMemory() {
@@ -55,6 +56,12 @@ public class SpiralMemory {
         matrix[currentX][currentY] = INITIAL_VALUE;
     }
 
+    /**
+     * Populates the spiral matrix by making each new value the next value
+     * incrementing from 1.  Matrix is populated in a counter-clockwise spiral
+     * pattern starting in the middle vertex which has been pre-populated with
+     * a value.
+     */
     public void sequentialData() {
         for (int distance = 1, i = 1; i < INPUT; distance++) {
 
@@ -75,17 +82,86 @@ public class SpiralMemory {
         }
 
         // Displays spiral matrix output
-        if(debug) {
-            for (int[] row : matrix) {
-                for (int value : row) { System.out.print(value + "\t"); }
-                System.out.println();
-            }
-        }
+        if(debug) { displayMatrix(); }
 
         System.out.println(
                 "Manhattan Distance to " + INPUT + ": " +
-                (Math.abs(initialX - currentX) + Math.abs(initialY - currentY))
+                        (Math.abs(initialX - currentX) + Math.abs(initialY - currentY))
         );
+    }
+
+    /**
+     * Populates the spiral matrix by making each new value the sum of all
+     * neighboring vertexes.  Matrix is populated in a counter-clockwise spiral
+     * pattern starting in the middle vertex which has been pre-populated with
+     * a value.
+     */
+    public void neighborSum() {
+        currentTotal = 0;
+
+        for (int distance = 1; currentTotal < INPUT; distance++) {
+
+            for (int x = distance; x > 0 && currentTotal < INPUT; x--) {
+                matrix[currentX][currentY += 1] = sumOfNeighbors(currentX, currentY);
+            }
+            for (int y = distance; y > 0 && currentTotal < INPUT; y--) {
+                matrix[currentX -= 1][currentY] = sumOfNeighbors(currentX, currentY);
+            }
+            distance++;
+
+            for (int x = distance; x > 0 && currentTotal < INPUT; x--) {
+                matrix[currentX][currentY -= 1] = sumOfNeighbors(currentX, currentY);
+            }
+            for (int y = distance; y > 0 && currentTotal < INPUT; y--) {
+                matrix[currentX += 1][currentY] = sumOfNeighbors(currentX, currentY);
+            }
+        }
+
+        // Displays spiral matrix output
+        if(debug) { displayMatrix(); }
+
+        System.out.println(
+                "Largest value after " + INPUT + ": " + currentTotal
+        );
+    }
+
+
+// METHODS - SUBROUTINES
+
+
+    /**
+     * Sums up all neighboring values of the 2D array vertex supplied.
+     * @param xCoord int x coordinate of current matrix vertex
+     * @param yCoord int y coordinate of current matrix vertex
+     * @return total int sum of all neighboring values
+     */
+    private int sumOfNeighbors(int xCoord, int yCoord) {
+        int total = 0;
+
+        for (int x = -1; x <= 1; x++) {
+            for (int y = -1; y <= 1; y++) {
+                if (x == 0 && y == 0) continue;
+
+                int newX = xCoord + x;
+                int newY = yCoord + y;
+
+                if (newX >= 0 && newX < width && newY >= 0 && newY < width) {
+                    total += matrix[newX][newY];
+                    currentTotal = total;
+                }
+            }
+        }
+        return total;
+    }
+
+    /**
+     * Reusable code block for outputting the entire spiral matrix.
+     */
+    private void displayMatrix() {
+        for (int[] row : matrix) {
+            for (int value : row) { System.out.print(value + "\t"); }
+            System.out.println();
+        }
     }
 
 }

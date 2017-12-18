@@ -59,6 +59,7 @@ public class AdventOfCode {
         System.out.println("\t(4) Checksum By Division");
         System.out.println("Day 3: Spiral Memory");
         System.out.println("\t(5) Manhattan Distance");
+        System.out.println("\t(6) Sum of Neighbors");
         System.out.println("--------------------");
         System.out.println("(x) Quit");
         System.out.println("####################");
@@ -92,6 +93,10 @@ public class AdventOfCode {
                 break;
             case "5":
                 new SpiralMemory().sequentialData();
+                pause();
+                break;
+            case "6":
+                new SpiralMemory().neighborSum();
                 pause();
                 break;
             case "x":
