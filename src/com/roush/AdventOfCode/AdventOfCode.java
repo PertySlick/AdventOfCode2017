@@ -9,6 +9,7 @@ package com.roush.AdventOfCode;
 
 import com.roush.Checksum.Checksum;
 import com.roush.InverseCaptcha.InverseCaptcha;
+import com.roush.PassphraseAnalyzer.PassphraseAnalyzer;
 import com.roush.SpiralMemory.SpiralMemory;
 
 import java.util.Scanner;
@@ -60,6 +61,9 @@ public class AdventOfCode {
         System.out.println("Day 3: Spiral Memory");
         System.out.println("\t(5) Manhattan Distance");
         System.out.println("\t(6) Sum of Neighbors");
+        System.out.println("Day 4: Passphrase Analyzer");
+        System.out.println("\t(7) Unique Words");
+        System.out.println("\t(8) Anagrams");
         System.out.println("--------------------");
         System.out.println("(x) Quit");
         System.out.println("####################");
@@ -97,6 +101,14 @@ public class AdventOfCode {
                 break;
             case "6":
                 new SpiralMemory().neighborSum();
+                pause();
+                break;
+            case "7":
+                new PassphraseAnalyzer().testForUniqueWords();
+                pause();
+                break;
+            case "8":
+                new PassphraseAnalyzer().testForAnagrams();
                 pause();
                 break;
             case "x":
